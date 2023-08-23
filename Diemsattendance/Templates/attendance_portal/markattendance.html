@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+  <title>Attendance</title>
+</head>
+
+<body class="container mt-5">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Attendance Form..!</div>
+      <div class="card-body">
+        <form>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <label for="college-prn" class="form-label">College PRN:</label>
+              </div>
+              <div class="col-sm">
+                <label for="college-prn" class="form-label">Full Name:</label>
+              </div>
+              <div class="col-sm">
+                <label for="college-prn" class="form-label">College PRN:</label>
+              </div>
+            </div>
+            {% for item in Student_Details %}
+            <div class="row my-2">
+              <div class="col-sm">
+                <input type="text" class="form-control" id="clg-prn" value="{{item.clg_prn}}" aria-describedby="clgHelp" disabled />
+              </div>
+              <div class="col-sm">
+                <input type="text" class="form-control" id="clg-prn" value="{{item.full_name}}" aria-describedby="clgHelp" disabled />
+              </div>
+              <div class="col-sm">
+                <div class="form-check form-check-inline col-sm">
+                  <input class="form-check-input " type="checkbox" checked="checked" id="inlineCheckbox1" value="option1">
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <button type="submit" class="btn btn-primary my-2">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
