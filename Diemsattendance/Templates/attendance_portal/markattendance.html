@@ -16,39 +16,54 @@
     <div class="card">
       <div class="card-header">Attendance Form..!</div>
       <div class="card-body">
-        <form>
+        <form action="{% url 'checked_attendance' %}" method="POST">
           <div class="container">
             <div class="row">
-              <div class="col-sm">
-                <label for="college-prn" class="form-label">College PRN:</label>
+              {% for key,val in lec_data.items %}
+              <div class="col-sm-2 my-2">
+                <input type="text" class="form-control" id="clg-prn" aria-describedby="clgHelp" name="Attendance_info_{{ forloop.counter }}" value="{{val}}"
+                  disabled>
               </div>
-              <div class="col-sm">
-                <label for="college-prn" class="form-label">Full Name:</label>
-              </div>
-              <div class="col-sm">
-                <label for="college-prn" class="form-label">College PRN:</label>
-              </div>
+              {% endfor %}
             </div>
-            {% for item in Student_Details %}
-            <div class="row my-2">
-              <div class="col-sm">
-                <input type="text" class="form-control" id="clg-prn" value="{{item.clg_prn}}" aria-describedby="clgHelp" disabled />
-              </div>
-              <div class="col-sm">
-                <input type="text" class="form-control" id="clg-prn" value="{{item.full_name}}" aria-describedby="clgHelp" disabled />
-              </div>
-              <div class="col-sm">
-                <div class="form-check form-check-inline col-sm">
-                  <input class="form-check-input " type="checkbox" checked="checked" id="inlineCheckbox1" value="option1">
-                </div>
-              </div>
-            </div>
-            {% endfor %}
+          </div>  
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <label for="college-prn" class="form-label">College PRN:</label>
           </div>
-          <button type="submit" class="btn btn-primary my-2">Submit</button>
-        </form>
+          <div class="col-sm">
+            <label for="college-prn" class="form-label">Full Name:</label>
+          </div>
+          <div class="col-sm">
+            <label for="college-prn" class="form-label">College PRN:</label>
+          </div>
+        </div>
+        {% for item in Student_Details %}
+        <div class="row my-2">
+          <div class="col-sm">
+            <input type="text" class="form-control" name="prn_{{ forloop.counter }}" value="{{item.clg_prn}}"
+              aria-describedby="clgHelp" disabled />
+          </div>
+          <div class="col-sm">
+            <input type="text" class="form-control" id="clg-prn" value="{{item.full_name}}" aria-describedby="clgHelp"
+              disabled />
+          </div>
+          <div class="col-sm">
+            <div class="form-check form-check-inline col-sm">
+              <input class="form-check-input " type="checkbox" checked="checked" id="inlineCheckbox1"
+                name="checked_{{ forloop.counter }}">
+            </div>
+          </div>
+          <div name="record_count" hidden>{{ forloop.counter }}</div>
+        </div>
+        {% endfor %}
+
       </div>
+      <button type="submit" class="btn btn-primary my-2">Submit</button>
+      </form>
     </div>
+  </div>
   </div>
   </div>
 

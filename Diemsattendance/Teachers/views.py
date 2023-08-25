@@ -34,7 +34,7 @@ def Markattendance(request):
         subject_name=split_list[4]
         sem_division=split_list[6]
         subject_teacher=split_list[7]
-        
+        lec_data={'acadmic_year':acadmic_year,'lecture_id':lecture_id,'lecture_date':lecture_date,'lecture_time':lecture_time,'lecture_type':lecture_type}
         print(lecture_id,lec_year,lec_branch,semester,subject_name,sem_division,subject_teacher)
         print(lecture_date)
         print(lecture_time)
@@ -47,4 +47,22 @@ def Markattendance(request):
             
         print(Student_Details)
         
-    return render(request, 'attendance_portal/markattendance.html',{'Student_Details':Student_Details})
+    return render(request, 'attendance_portal/markattendance.html',{'Student_Details':Student_Details,'lec_data':lec_data})
+
+def checked_attendance(request):
+    if request.method == 'POST':
+        acadmic_year = request.POST.get('Attendance_info_1')
+        lecture_id = request.POST.get('Attendance_info_2')
+        lecture_date = request.POST.get('Attendance_info_3')
+        lecture_time = request.POST.get('Attendance_info_4')
+        lecture_type = request.POST.get('Attendance_info_5')
+        record_count = request.POST.get('record_count')
+        for i in range(record_count,1):
+            record_id="prn_"+i
+            record_id = request.POST.get('record_id')
+            record_checked="checked_"+i
+            checked_id = request.POST.get('record_checked')
+            
+            
+        
+    return render(request, 'attendace_portal/checked_attendance.html')
