@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from Acadmic_info.models import Branch_Record
 from Attendance.models import Attendance_Record
 from Lectures.models import Lecture_Record,Subject_Record
 from Students.models import Student_Record,acdamic_year
 from Teachers.models import Teacher_Record
+from datetime import datetime 
 
 # Create your views here.
 def Takeattendance(request):
@@ -51,18 +52,26 @@ def Markattendance(request):
 
 def checked_attendance(request):
     if request.method == 'POST':
-        acadmic_year = request.POST.get('Attendance_info_1')
-        lecture_id = request.POST.get('Attendance_info_2')
-        lecture_date = request.POST.get('Attendance_info_3')
-        lecture_time = request.POST.get('Attendance_info_4')
-        lecture_type = request.POST.get('Attendance_info_5')
-        record_count = request.POST.get('record_count')
-        for i in range(record_count,1):
-            record_id="prn_"+i
-            record_id = request.POST.get('record_id')
-            record_checked="checked_"+i
-            checked_id = request.POST.get('record_checked')
-            
-            
+        acadmic_year_entry = request.POST.get('Attendance_info_1')
+        lecture_id_entry = request.POST.get('Attendance_info_2')
+        lecture_date_entry = request.POST.get('Attendance_info_3')
+        lecture_time_entry = request.POST.get('Attendance_info_4')
+        lecture_type_entry = request.POST.get('Attendance_info_5')
+        record_count_entry = request.POST.get('record_count')
+        #print(acadmic_year_entry, record_count_entry,lecture_id_entry,lecture_time_entry)
+        for i in range(1,int(record_count_entry)+1):
+            record_id="prn_"+str(i)
+            record_id_details = request.POST.get(record_id)
+            record_checked="checked_"+str(i)
+            checked_id = request.POST.get(record_checked)
+            if checked_id==None:
+                ispresent = "A"
+            else:
+                ispresent = "P"
+            #print(record_id_details)
+            #print(ispresent)
+              
+            Attendance_Record_object=Attendance_Record.objects.create(student_Id=record_id_details,Lecture_Id=lecture_id_entry,Acadmic_year=acadmic_year_entry,default_att_Date=datetime.now(),att_date=lecture_date_entry,att_time=lecture_time_entry,is_present=ispresent,is_type=lecture_type_entry)
+            Attendance_Record_object.save()
         
-    return render(request, 'attendace_portal/checked_attendance.html')
+    return render(request, 'attendance_portal/success_attendance.html')

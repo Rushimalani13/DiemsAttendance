@@ -11,3 +11,21 @@ class Branch_Record(models.Model):
 
     def __str__(self):
         return self.full_name
+    
+class Subject_Record_CSE(models.Model):
+    sub_id = models.AutoField(primary_key=True)
+    sub_name=models.CharField(max_length=220)
+    sub_type=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.sub_name
+
+class Subject_Record_AIML(models.Model):
+    sub_id = models.AutoField(primary_key=True)
+    sub_name=models.CharField(max_length=220)
+    sub_type=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.sub_name
+
+

@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSE ATTENDANCE SYSTEM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+    {% block includecss %}
+
+    {% endblock %}
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <div class="dashboard">
+      <div class="dashboard-nav" style="background-color: black;">
+        <header>
+          <h3>CSE Attendance</h3>
+        </header>
+        <nav class="dashboard-nav-list">
+          <a href="#" class="dashboard-nav-item"
+            ><i class="fas fa-home"></i> Home
+          </a>
+          <a href="#" class="dashboard-nav-item"
+            ><i class="fas fa-user-tie"></i> Manage Faculty
+          </a>
+          <a href="#" class="dashboard-nav-item"
+            ><i class="fas fa-square-poll-horizontal"></i> Manage Subject
+          </a>
+          <a href="#" class="dashboard-nav-item"
+            ><i class="fas fa-user-plus"></i> Add Class
+          </a>
+          <a href="#" class="dashboard-nav-item"
+            ><i class="fas fa-users"></i> Add Student
+          </a>
+          <a href="#" class="dashboard-nav-item active"
+            ><i class="fas fa-tachometer-alt"></i> Class Record
+          </a>
+          <div class="dashboard-nav-dropdown">
+            <a
+              href="#!"
+              class="dashboard-nav-item dashboard-nav-dropdown-toggle"
+              ><i class="fas fa-del"></i> Delete Attendance
+            </a>
+            <div class="dashboard-nav-dropdown-menu">
+              <a href="#" class="dashboard-nav-dropdown-item">Theory</a
+              ><a href="#" class="dashboard-nav-dropdown-item">Practical</a>
+            </div>
+          </div>
+          <a href="#" class="dashboard-nav-item"
+            ><i class="fas fa-user"></i> Profile
+          </a>
+          <div class="nav-item-divider"></div>
+          <a href="#" class="dashboard-nav-item"
+            ><i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </nav>
+      </div>
+      <div class="dashboard-app" style="background-color: black;">
+        <header class="dashboard-toolbar" style="background-color: black;">
+          <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+        </header>
+         
+        {% block dashboardbody %}
+
+        {% endblock  %}
+      </div>
+    </div>
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    {% block includejs %}
+
+    {% endblock %}
+  </body>
+</html>

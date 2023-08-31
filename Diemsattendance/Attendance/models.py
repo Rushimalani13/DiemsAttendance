@@ -14,3 +14,5 @@ class Attendance_Record(models.Model):
 
     def __str__(self):
         return self.is_type
+    
+
